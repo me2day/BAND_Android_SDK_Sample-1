@@ -345,6 +345,7 @@ public class MainActivity extends BaseToolbarActivity {
 
 	private void gotoBandSelect(BandSelectType bandSelectType) {
 		this.bandSelectType = bandSelectType;
+
 		Intent intent = new Intent(this, BandListActivity.class);
 		startActivityForResult(intent, SampleConstants.RequestCode.BAND_SELECT);
 	}
