@@ -1,6 +1,9 @@
 package com.campmobile.android.sampleapp.activity;
 
-import static com.campmobile.android.sampleapp.SampleConstants.RequestCode.*;
+import static com.campmobile.android.sampleapp.SampleConstants.RequestCode.BAND_SELECT;
+import static com.campmobile.android.sampleapp.SampleConstants.RequestCode.DELEGATE_LEADER;
+import static com.campmobile.android.sampleapp.SampleConstants.RequestCode.FRIEND_SELECT;
+import static com.campmobile.android.sampleapp.SampleConstants.RequestCode.MEMBER_SELECT;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,10 +31,10 @@ import com.campmobile.android.bandsdk.entity.OfficialBand;
 import com.campmobile.android.bandsdk.entity.Quota;
 import com.campmobile.android.bandsdk.entity.QuotaType;
 import com.campmobile.android.bandsdk.entity.Quotas;
-import com.campmobile.android.sampleapp.adapter.MenuAdapter;
-import com.campmobile.android.sampleapp.adapter.MenuItem;
 import com.campmobile.android.sampleapp.R;
 import com.campmobile.android.sampleapp.SampleConstants;
+import com.campmobile.android.sampleapp.adapter.MenuAdapter;
+import com.campmobile.android.sampleapp.adapter.MenuItem;
 
 public class MainActivity extends BaseToolbarActivity {
 	private BandManager bandManager;
@@ -245,6 +248,15 @@ public class MainActivity extends BaseToolbarActivity {
 			}
 		}));
 
+
+		menuItems.add(new MenuItem(getResources().getString(R.string.main_title_delegate), true, null));
+		menuItems.add(new MenuItem(getResources().getString(R.string.main_menu_guild_leader_delegate), false, new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				gotoLeaderSelectActivity();
+			}
+		}));
+
 		return menuItems;
 	}
 
@@ -286,6 +298,13 @@ public class MainActivity extends BaseToolbarActivity {
 					showMessage("selected friend : " + selectedFriend.getName());
 				}
 				break;
+			case DELEGATE_LEADER:
+				if (resultCode == RESULT_OK) {
+					Member selectedMember = data.getParcelableExtra(SampleConstants.ParameterKey.MEMBER);
+					Band band = data.getParcelableExtra(SampleConstants.ParameterKey.BAND);
+					gotoDelegateLeader(band.getBandKey(), selectedMember.getUserKey());
+				}
+				break;
 		}
 		super.onActivityResult(requestCode, resultCode, data);
 	}
@@ -303,6 +322,11 @@ public class MainActivity extends BaseToolbarActivity {
 	private void gotoMemberListActivity() {
 		Intent intent = new Intent(this, MemberListActivity.class);
 		startActivityForResult(intent, SampleConstants.RequestCode.MEMBER_SELECT);
+	}
+
+	private void gotoLeaderSelectActivity(){
+		Intent intent = new Intent(this, MemberListActivity.class);
+		startActivityForResult(intent, SampleConstants.RequestCode.DELEGATE_LEADER);
 	}
 
 	private void gotoGuildBandCreateActivity() {
@@ -340,6 +364,13 @@ public class MainActivity extends BaseToolbarActivity {
 
 	private void gotoWritePostActivity() {
 		Intent intent = new Intent(MainActivity.this, WritePostActivity.class);
+		startActivity(intent);
+	}
+
+	private void gotoDelegateLeader(String bandKey, String userKey){
+		Intent intent = new Intent(MainActivity.this, DelegateLeaderActivity.class);
+		intent.putExtra(SampleConstants.ParameterKey.BAND_KEY, bandKey);
+		intent.putExtra(SampleConstants.ParameterKey.USER_KEY, userKey);
 		startActivity(intent);
 	}
 

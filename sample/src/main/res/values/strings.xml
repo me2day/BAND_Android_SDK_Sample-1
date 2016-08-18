@@ -28,6 +28,7 @@
     <string name="title_guild_band_join">Join Guild Band</string>
     <string name="title_select_friends">Select Friends</string>
     <string name="title_setting">Setting</string>
+    <string name="title_guild_delegate_leader">Delegate Guilde Leader</string>
 
     <!-- main title -->
     <string name="main_title_account">1. Account</string>
@@ -40,6 +41,7 @@
     <string name="main_title_messages">8. messages</string>
     <string name="main_title_open">9. Open</string>
     <string name="main_title_leave">10. Leave</string>
+    <string name="main_title_delegate">11. Delegate</string>
 
     <!-- main menu -->
     <string name="main_menu_my_profile">My profile</string>
@@ -64,6 +66,7 @@
     <string name="main_menu_goto_band">Goto band</string>
     <string name="main_menu_goto_chat">Goto band chat room</string>
     <string name="main_menu_guild_band_leave">Leave guild band</string>
+    <string name="main_menu_guild_leader_delegate">Delegate leader</string>
 
     <!-- send_message.xml -->
     <string name="send_msg_label_invite_msg">Invite\nMessage</string>
@@ -112,4 +115,8 @@
     <string name="guild_band_join_label_select_profile_image">Select Profile Image</string>
     <string name="guild_band_join_btn">Join Guild Band</string>
 
+    <!-- guild_delegate_leader.xml -->
+    <string name="guild_delegate_leader_band_key">Guild Band Key</string>
+    <string name="guild_delegate_leader_user_key">User Key</string>
+    <string name="guild_delegate_leader_btn">Delegate Leader</string>
 </resources>

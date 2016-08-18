@@ -20,6 +20,7 @@ public class SampleConstants {
 		public static final int MEMBER_SELECT = 0;
 		public static final int BAND_SELECT = 1;
 		public static final int FRIEND_SELECT = 2;
+		public static final int DELEGATE_LEADER = 3;
 	}
 
 	public static class ParameterKey {
@@ -27,5 +28,6 @@ public class SampleConstants {
 		public static final String BAND_KEY = "band_key";
 		public static final String MEMBER = "member";
 		public static final String FRIEND = "friend";
+		public static final String USER_KEY = "user_key";
 	}
 }
