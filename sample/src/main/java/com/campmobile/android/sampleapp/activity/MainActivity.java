@@ -210,6 +210,13 @@ public class MainActivity extends BaseToolbarActivity {
 			}
 		}));
 
+		menuItems.add(new MenuItem(getResources().getString(R.string.main_menu_goto_band_notice_list), false, new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				gotoBandSelect(BandSelectType.BOARD_NOTICE_LIST);
+			}
+		}));
+
 		menuItems.add(new MenuItem(getResources().getString(R.string.main_title_posts), true, null));
 		menuItems.add(new MenuItem(getResources().getString(R.string.main_menu_write_post), false, new OnClickListener() {
 			@Override
@@ -291,6 +298,8 @@ public class MainActivity extends BaseToolbarActivity {
 							case BOARD_LIST:
 								gotoBoardList(band.getBandKey());
 								break;
+							case BOARD_NOTICE_LIST:
+								gotoBandNoticeList(band.getBandKey());
 						}
 
 					}
@@ -517,10 +526,15 @@ public class MainActivity extends BaseToolbarActivity {
 		bandManager.gotoBoard(this, bandKey);
 	}
 
+	private void gotoBandNoticeList(String bandKey){
+		bandManager.gotoBandNoticeList(this, bandKey);
+	}
+
 	private enum BandSelectType {
 		GOTO_BAND,
 		GOTO_CHAT,
 		LEAVE_BAND,
-		BOARD_LIST;
+		BOARD_LIST,
+		BOARD_NOTICE_LIST;
 	}
 }
