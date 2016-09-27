@@ -278,6 +278,14 @@ public class MainActivity extends BaseToolbarActivity {
 			}
 		}));
 
+		menuItems.add(new MenuItem("사진선택 임시", true, null));
+		menuItems.add(new MenuItem("사진선택 임시 테스트", false, new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				bandManager.selectPhoto(MainActivity.this,null);
+			}
+		}));
+
 		return menuItems;
 	}
 
