@@ -210,6 +210,20 @@ public class MainActivity extends BaseToolbarActivity {
 			}
 		}));
 
+		menuItems.add(new MenuItem(getResources().getString(R.string.main_menu_goto_band_notice_list), false, new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				gotoBandSelect(BandSelectType.BOARD_NOTICE_LIST);
+			}
+		}));
+
+		menuItems.add(new MenuItem(getResources().getString(R.string.main_menu_goto_band_search_list), false, new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				gotoBandSelect(BandSelectType.BOARD_SEARCH);
+			}
+		}));
+
 		menuItems.add(new MenuItem(getResources().getString(R.string.main_title_posts), true, null));
 		menuItems.add(new MenuItem(getResources().getString(R.string.main_menu_write_post), false, new OnClickListener() {
 			@Override
@@ -264,6 +278,14 @@ public class MainActivity extends BaseToolbarActivity {
 			}
 		}));
 
+		menuItems.add(new MenuItem("사진선택 임시", true, null));
+		menuItems.add(new MenuItem("사진선택 임시 테스트", false, new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				bandManager.selectPhoto(MainActivity.this,null);
+			}
+		}));
+
 		return menuItems;
 	}
 
@@ -290,6 +312,12 @@ public class MainActivity extends BaseToolbarActivity {
 								break;
 							case BOARD_LIST:
 								gotoBoardList(band.getBandKey());
+								break;
+							case BOARD_NOTICE_LIST:
+								gotoBandNoticeList(band.getBandKey());
+								break;
+							case BOARD_SEARCH:
+								gotoBandSearch(band.getBandKey());
 								break;
 						}
 
@@ -517,10 +545,20 @@ public class MainActivity extends BaseToolbarActivity {
 		bandManager.gotoBoard(this, bandKey);
 	}
 
+	private void gotoBandNoticeList(String bandKey){
+		bandManager.gotoBandNoticeList(this, bandKey);
+	}
+
+	private void gotoBandSearch(String bandKey){
+		bandManager.gotoBandSearch(this, bandKey);
+	}
+
 	private enum BandSelectType {
 		GOTO_BAND,
 		GOTO_CHAT,
 		LEAVE_BAND,
-		BOARD_LIST;
+		BOARD_LIST,
+		BOARD_NOTICE_LIST,
+		BOARD_SEARCH;
 	}
 }

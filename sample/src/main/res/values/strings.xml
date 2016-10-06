@@ -64,6 +64,8 @@
     <string name="main_menu_guild_band_posts">Guild Band get posts</string>
     <string name="main_menu_guild_band_notices">Guild band get notice</string>
     <string name="main_menu_goto_band_post_list">Goto each band post list</string>
+    <string name="main_menu_goto_band_notice_list">Goto each band notice list</string>
+    <string name="main_menu_goto_band_search_list">Goto each band search list</string>
     <string name="main_menu_goto_band">Goto band</string>
     <string name="main_menu_goto_chat">Goto band chat room</string>
     <string name="main_menu_guild_band_leave">Leave guild band</string>
