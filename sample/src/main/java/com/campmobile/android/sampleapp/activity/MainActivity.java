@@ -62,6 +62,18 @@ public class MainActivity extends BaseToolbarActivity {
 	}
 
 	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putString("bandSelectType", bandSelectType.name());
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+		bandSelectType = BandSelectType.valueOf(savedInstanceState.getString("bandSelectType"));
+	}
+
+	@Override
 	public void onBackPressed() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle(R.string.exit_dialog_title);
@@ -169,9 +181,9 @@ public class MainActivity extends BaseToolbarActivity {
 		menuItems.add(new MenuItem(getResources().getString(R.string.main_menu_official_band_posts), false, new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(officialBand == null) {
+				if (officialBand == null) {
 					return;
-				} else if(!officialBand.isMember()) {
+				} else if (!officialBand.isMember()) {
 					showMessage(R.string.is_not_official_band_member);
 					return;
 				}
@@ -181,9 +193,9 @@ public class MainActivity extends BaseToolbarActivity {
 		menuItems.add(new MenuItem(getResources().getString(R.string.main_menu_official_band_notices), false, new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(officialBand == null) {
+				if (officialBand == null) {
 					return;
-				} else if(!officialBand.isMember()) {
+				} else if (!officialBand.isMember()) {
 					showMessage(R.string.is_not_official_band_member);
 					return;
 				}
@@ -269,7 +281,6 @@ public class MainActivity extends BaseToolbarActivity {
 			}
 		}));
 
-
 		menuItems.add(new MenuItem(getResources().getString(R.string.main_title_delegate), true, null));
 		menuItems.add(new MenuItem(getResources().getString(R.string.main_menu_guild_leader_delegate), false, new OnClickListener() {
 			@Override
@@ -282,7 +293,7 @@ public class MainActivity extends BaseToolbarActivity {
 		menuItems.add(new MenuItem("사진선택 임시 테스트", false, new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				bandManager.selectPhoto(MainActivity.this,null);
+				bandManager.selectPhoto(MainActivity.this, null);
 			}
 		}));
 
@@ -296,7 +307,7 @@ public class MainActivity extends BaseToolbarActivity {
 				if (resultCode == RESULT_OK) {
 					Band band = data.getParcelableExtra(SampleConstants.ParameterKey.BAND);
 					if (band != null) {
-						if(bandSelectType == null) {
+						if (bandSelectType == null) {
 							showMessage("selected band : " + band.getName());
 							return;
 						}
@@ -362,7 +373,7 @@ public class MainActivity extends BaseToolbarActivity {
 		startActivityForResult(intent, SampleConstants.RequestCode.MEMBER_SELECT);
 	}
 
-	private void gotoLeaderSelectActivity(){
+	private void gotoLeaderSelectActivity() {
 		Intent intent = new Intent(this, MemberListActivity.class);
 		startActivityForResult(intent, SampleConstants.RequestCode.DELEGATE_LEADER);
 	}
@@ -387,7 +398,7 @@ public class MainActivity extends BaseToolbarActivity {
 		Intent intent = new Intent(this, BandPostsActivity.class);
 		intent.putExtra(SampleConstants.BandType.INTENT_EXTRA_KEY, bandType);
 		intent.putExtra(SampleConstants.PostType.INTENT_EXTRA_KEY, postType);
-		if(bandKey != null && !bandKey.isEmpty()) {
+		if (bandKey != null && !bandKey.isEmpty()) {
 			intent.putExtra(SampleConstants.ParameterKey.BAND_KEY, bandKey);
 		}
 		startActivity(intent);
@@ -405,7 +416,7 @@ public class MainActivity extends BaseToolbarActivity {
 		startActivity(intent);
 	}
 
-	private void gotoDelegateLeader(String bandKey, String userKey){
+	private void gotoDelegateLeader(String bandKey, String userKey) {
 		Intent intent = new Intent(MainActivity.this, DelegateLeaderActivity.class);
 		intent.putExtra(SampleConstants.ParameterKey.BAND_KEY, bandKey);
 		intent.putExtra(SampleConstants.ParameterKey.USER_KEY, userKey);
@@ -507,7 +518,7 @@ public class MainActivity extends BaseToolbarActivity {
 
 			@Override
 			public void onPostExecute(boolean isSuccess) {
-				if(isSuccess) {
+				if (isSuccess) {
 					getOfficialBandInformation(false);
 				}
 			}
@@ -518,7 +529,7 @@ public class MainActivity extends BaseToolbarActivity {
 		bandManager.getOfficialBandInformation(new ApiCallbacks<OfficialBand>() {
 			@Override
 			public void onResponse(OfficialBand band) {
-				if(showInfoDialog) {
+				if (showInfoDialog) {
 					showDialog(R.string.main_menu_official_band_information, "official_band_key : " + band.getBandKey() + "\nis_official_band_member : " + band.isMember());
 				}
 				officialBand = band;
@@ -541,15 +552,15 @@ public class MainActivity extends BaseToolbarActivity {
 		});
 	}
 
-	private void gotoBoardList(String bandKey){
+	private void gotoBoardList(String bandKey) {
 		bandManager.gotoBoard(this, bandKey);
 	}
 
-	private void gotoBandNoticeList(String bandKey){
+	private void gotoBandNoticeList(String bandKey) {
 		bandManager.gotoBandNoticeList(this, bandKey);
 	}
 
-	private void gotoBandSearch(String bandKey){
+	private void gotoBandSearch(String bandKey) {
 		bandManager.gotoBandSearch(this, bandKey);
 	}
 
