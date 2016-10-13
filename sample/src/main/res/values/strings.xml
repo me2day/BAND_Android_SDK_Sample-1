@@ -47,6 +47,7 @@
     <string name="main_menu_my_profile">My profile</string>
     <string name="main_menu_send_message">Send message</string>
     <string name="main_menu_write_post">Write post</string>
+    <string name="main_menu_write_post_on_selected_band">Write post on selected band</string>
     <string name="main_menu_band_list">Band list</string>
     <string name="main_menu_member_list">Band member list</string>
     <string name="main_menu_friend_list">Friend list (connected this app)</string>
