@@ -64,7 +64,9 @@ public class MainActivity extends BaseToolbarActivity {
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		outState.putString("bandSelectType", bandSelectType.name());
+		if (bandSelectType != null) {
+			outState.putString("bandSelectType", bandSelectType.name());
+		}
 	}
 
 	@Override
