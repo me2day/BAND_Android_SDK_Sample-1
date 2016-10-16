@@ -10,6 +10,8 @@
         <item name="android:textColorPrimaryInverse">@color/primary_text_inverse</item>
         <item name="android:textAppearanceLargePopupMenu">@style/PopupMenuTextAppearanceLarge</item>
         <item name="android:textAppearanceSmallPopupMenu">@style/PopupMenuTextAppearanceSmall</item>
+        <item name="android:windowFullscreen">true</item>
+
     </style>
 
     <style name="PopupMenuTextAppearanceSmall" parent="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small">
